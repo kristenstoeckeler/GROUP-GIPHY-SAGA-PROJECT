@@ -3,17 +3,26 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 //Import to do routing
 import {withRouter} from 'react-router-dom';
+import FavoriteGif from '../FavoriteGif/FavoriteGif';
 
 export class FavoritesPage extends Component {
 
+    componentDidMount(){
+        this.props.dispatch({ type: 'GET_FAV' });
+    }
+
     render() {
         return (
-            <h2>FAVORITE GIFS!!!</h2>
+            <section className="favorites">
+                {this.props.favorites.map( favorite =>
+                    <FavoriteGif key={favorite.id} favorite={favorite} />
+                    )}
+            </section>
         )
     }
 }
 const putPropsOnReduxStore = (reduxStore) => ({
-    
+    favorites: reduxStore.favoriteReducer,
 });
 
 
