@@ -55,8 +55,19 @@ router.put('/:favId', (req, res) => {
 });
 
 // delete a favorite
-router.delete('/', (req, res) => {
-  res.sendStatus(200);
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  console.log(`In delete `)
+  const queryText = `DELETE FROM favorite WHERE id = ($1)`
+  const queryValues = [
+    id
+  ]
+  pool.query(queryText, queryValues)
+    .then(()=>{res.sendStatus(201);})
+    .catch((err) => {
+      console.log('Error completing put category',err);
+      res.sendStatus(500)
+    })
 });
 
 module.exports = router;
