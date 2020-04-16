@@ -5,12 +5,28 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  res.sendStatus(200);
+  const queryText = 'SELECT * FROM favorite';
+  pool.query(queryText)
+    .then((result) => { res.send(result.rows); })
+    .catch((err) => {
+      console.log('Error completing SELECT favorite query', err);
+      res.sendStatus(500);
+    });
 });
-
 // add a new favorite 
 router.post('/', (req, res) => {
-  res.sendStatus(200);
+  const fav = req.body;
+  const queryText = `INSERT INTO favorite ("url")
+                    VALUES ($1)`;
+  const queryValues = [
+    fav.url
+  ];
+  pool.query(queryText, queryValues)
+    .then(() => { res.sendStatus(201); })
+    .catch((err) => {
+      console.log('Error completing insert fav query', err);
+      res.sendStatus(500);
+    });
 });
 
 // update given favorite with a category id
