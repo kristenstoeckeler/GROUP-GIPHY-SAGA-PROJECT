@@ -15,15 +15,20 @@ const searchReducer = () => {
     //Need to buildout reducer
 }
 
-const favoriteReducer = () => {
-    console.log('in favoriteReducer');
+const favoriteReducer = (state=[], action) => {
+    console.log('in favoriteReducer', action.type);
+    switch (action.type){
+        case 'FAVES':
+            return action.payload     
+    }
     return 'blah'
-    //Need to buildout reducer
+    
 }
 
 function* rootSaga(){
     yield takeEvery('GET_GIF', getGifSaga);
-    yield takeEvery('POST_FAVORITE', postFavoriteSaga);
+    yield takeEvery('GET_FAV', getFavoriteSaga);
+    yield takeEvery('POST_FAV', postFavoriteSaga);
 }
 
 function* getGifSaga(action){
@@ -31,9 +36,20 @@ function* getGifSaga(action){
     //Need to buildout Axios request
 }
 
-function* postFavoriteSaga(action) {
-    console.log('in postFavoriteSaga', action);
+function* getFavoriteSaga(action) {
+    console.log('in getGifSaga', action);
     //Need to buildout Axios request
+}
+
+//Need to determing URL
+function* postFavoriteSaga(action) {
+    console.log('in postFavoriteSaga', action.payload);
+    try {
+        yield axios.post('??', action.payload)
+    }
+    catch(error){
+        console.log('Error on POST', error);
+    }
 }
 
 const sagaMiddleware = createSagaMiddleware();
