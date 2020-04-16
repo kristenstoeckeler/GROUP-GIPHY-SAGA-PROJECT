@@ -35,8 +35,19 @@ function* rootSaga(){
     yield takeEvery('GET_FAV', getFavoriteSaga);
     yield takeEvery('POST_FAV', postFavoriteSaga);
     yield takeEvery('PUT_FAV', putFavoriteSaga);
+    yield takeEvery('DELETE_FAV', deleteFavoriteSaga);
 }
-
+function* deleteFavoriteSaga(action){
+    console.log('in DeleteFavoriteSaga', action.payload);
+    try{
+        yield axios.delete(`/api/favorite/${action.payload}`);
+        yield put({type:'GET_FAV'});
+    }
+    catch(error){
+        console.log('Error with favorite Delete', error);
+    }
+    
+}
 function* putFavoriteSaga(action){
     console.log('in putFavoriteSaga', action.payload);
     try{
