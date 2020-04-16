@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
 
 class GiphySearch extends Component {
     state = {
@@ -14,12 +15,10 @@ class GiphySearch extends Component {
 
 
     handleSubmit = (event) => {
-
+        console.log(this);
         event.preventDefault();
         console.log(this.state.search);
         this.props.dispatch({ type: 'GET_GIF', payload: this.state.search})
-
-        this.props.dispatch({ type: 'GET_GIF', payload: this.state.search })
     }
     render() {
         return (
@@ -34,4 +33,4 @@ class GiphySearch extends Component {
     }
 }
 
-export default (GiphySearch);
+export default connect()(GiphySearch);
