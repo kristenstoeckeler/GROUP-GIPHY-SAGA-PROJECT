@@ -10,32 +10,60 @@ import { HashRouter as Router } from 'react-router-dom';
 
 import App from './components/App/App';
 
-const searchReducer = () => {
+const searchReducer = (state = [], action) => {
     console.log('in searchReducer');
-    return 'blah'
-    //Need to buildout reducer
+    switch (action.type){
+        case 'SEARCH_RESULTS':
+            return action.payload
+    default:
+        return state
+    }
 }
 
-const favoriteReducer = () => {
-    console.log('in favoriteReducer');
-    return 'blah'
-    //Need to buildout reducer
+const favoriteReducer = (state=[], action) => {
+    console.log('in favoriteReducer', action.type);
+    switch (action.type){
+        case 'FAVES':
+            return action.payload     
+    
+    default:
+        return state   
+    }
 }
 
 function* rootSaga(){
     yield takeEvery('GET_GIF', getGifSaga);
-    yield takeEvery('POST_FAVORITE', postFavoriteSaga);
+    yield takeEvery('GET_FAV', getFavoriteSaga);
+    yield takeEvery('POST_FAV', postFavoriteSaga);
 }
 
-function* getGifSaga(action){// search
+function* getGifSaga(action){
+    console.log('in getGifSaga', action.payload);
+    try{
+        const response = yield axios.get('/api/search');
+        console.log('heres the GET response');
+        yield put({type: 'SEARCH_RESULTS', payload: response.data})
+    }
+    catch(error){
+        console.log('Error with Faves GET', error);
+    }
+}
+
+//Need to build GET Favorites
+function* getFavoriteSaga(action) {
     console.log('in getGifSaga', action);
     //Need to buildout Axios request
 }
 
 function* postFavoriteSaga(action) {
-    console.log('in postFavoriteSaga', action);
-    //Need to buildout Axios request
-}   
+    console.log('in postFavoriteSaga', action.payload);
+    try {
+        yield axios.post('/api/favorite', action.payload)
+    }
+    catch(error){
+        console.log('Error on POST', error);
+    }
+}
 
 const sagaMiddleware = createSagaMiddleware();
 
