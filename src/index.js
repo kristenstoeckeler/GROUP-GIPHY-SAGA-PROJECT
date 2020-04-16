@@ -34,13 +34,23 @@ function* rootSaga(){
     yield takeEvery('GET_GIF', getGifSaga);
     yield takeEvery('GET_FAV', getFavoriteSaga);
     yield takeEvery('POST_FAV', postFavoriteSaga);
+    yield takeEvery('PUT_FAV', putFavoriteSaga);
+}
+
+function* putFavoriteSaga(action){
+    console.log('in putFavoriteSaga', action.payload);
+    try{
+        yield axios.put(`/api/favorite/${action.payload.id}`, action.payload);
+    }
+    catch(error){
+        console.log('Error with Favorite PUT', error);
+    }
 }
 
 function* getGifSaga(action){
     console.log('in getGifSaga', action.payload);
     try{
         const response = yield axios.get(`/api/search/${action.payload}`);
-        console.log('heres the GET response');
         yield put({type: 'SEARCH_RESULTS', payload: response.data})
     }
     catch(error){
