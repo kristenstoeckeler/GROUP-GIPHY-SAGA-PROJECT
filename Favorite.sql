@@ -10,7 +10,7 @@
 CREATE TABLE "favorite"(
 	"id" SERIAL PRIMARY KEY,
 	"URL" VARCHAR (255) NOT NULL,
-	"category" VARCHAR(100) NOT NULL
+	"category" VARCHAR(100)
 	);
 INSERT INTO favorite ("URL", "category") 
 VALUES ('https://tumblr.4gifs.com/post/84766399414/cat-shaq-wiggles' , 'funny');

@@ -28,6 +28,7 @@ export class FavoriteGif extends Component {
             <div>
                 {/* {this.props.favorite ? */}
                 <img src={this.props.favorite.URL} alt="FavGif" />
+                <p>{this.props.favorite.category}</p>
                 <div className="category">
                     <p>Category: { this.props.favorite.category}</p>
                     <label htmlFor="category"><button onClick={ this.handleClick}>Set Category</button></label>
@@ -38,8 +39,7 @@ export class FavoriteGif extends Component {
                         <option value="cartoon">Cartoon</option>
                         <option value="nsfw">NSFW</option>
                         <option value="meme">Meme</option>
-                    </select>
-                    
+                    </select>    
                 </div>
             </div>
         )
