@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import axios from 'axios';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
+import { HashRouter as Router } from 'react-router-dom';
 
 import App from './components/App/App';
 
@@ -76,4 +77,4 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('react-root'));
+ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('react-root'));

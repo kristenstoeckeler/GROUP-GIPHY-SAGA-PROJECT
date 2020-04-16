@@ -1,0 +1,7 @@
+.navBar {
+    display: inline-flex;
+}
+
+.link {
+    margin: 1rem;
+}

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
 export class FavoritesPage extends Component {
-    
+
     render() {
         return (
             <h2>FAVORITE GIFS!!!</h2>
