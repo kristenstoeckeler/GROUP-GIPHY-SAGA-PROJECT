@@ -7,7 +7,9 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const queryText = 'SELECT * FROM favorite';
   pool.query(queryText)
-    .then((result) => { res.send(result.rows); })
+    .then((result) => { 
+      console.log( 'Got fav on server', result.rows );
+      res.send(result.rows); })
     .catch((err) => {
       console.log('Error completing SELECT favorite query', err);
       res.sendStatus(500);
