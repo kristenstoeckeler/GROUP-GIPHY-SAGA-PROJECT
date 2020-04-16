@@ -26,6 +26,7 @@ export class FavoriteGif extends Component {
     render() {
         return (
             <div>
+                <h1>Favorites!git</h1>
                 {/* {this.props.favorite ? */}
                 <img src={this.props.favorite.URL} alt="FavGif" />
                 <p>{this.props.favorite.category}</p>
