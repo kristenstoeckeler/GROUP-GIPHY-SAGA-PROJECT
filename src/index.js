@@ -24,8 +24,7 @@ const favoriteReducer = (state=[], action) => {
     console.log('in favoriteReducer', action.type);
     switch (action.type){
         case 'FAVES':
-            return action.payload     
-    
+            return action.payload       
     default:
         return state   
     }
@@ -45,14 +44,20 @@ function* getGifSaga(action){
         yield put({type: 'SEARCH_RESULTS', payload: response.data})
     }
     catch(error){
-        console.log('Error with Faves GET', error);
+        console.log('Error with Search GET', error);
     }
 }
 
-//Need to build GET Favorites
 function* getFavoriteSaga(action) {
     console.log('in getGifSaga', action);
-    //Need to buildout Axios request
+    try{
+        const response = yield axios.get('/api/favorite');
+        console.log( 'Heres the GET response for /api/favorite');
+        yield put ({type: 'FAVES', payload: response.data})
+    }
+    catch(error){
+        console.log( 'Error with Faves GET', error);
+    }
 }
 
 function* postFavoriteSaga(action) {

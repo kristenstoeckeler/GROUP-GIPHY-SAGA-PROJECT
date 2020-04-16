@@ -19,7 +19,7 @@ class GiphySearch extends Component {
         console.log(this.state.search);
         this.props.dispatch({ type: 'GET_GIF', payload: this.state.search})
 
-        this.props.dispatch({ type: 'GET_GIF', payload: this.state.search })
+        // this.props.dispatch({ type: 'GET_GIF', payload: this.state.search })
     }
     render() {
         return (
