@@ -27,7 +27,7 @@ function* rootSaga(){
     yield takeEvery('POST_FAVORITE', postFavoriteSaga);
 }
 
-function* getGifSaga(action){
+function* getGifSaga(action){// search
     console.log('in getGifSaga', action);
     //Need to buildout Axios request
 }
@@ -35,7 +35,7 @@ function* getGifSaga(action){
 function* postFavoriteSaga(action) {
     console.log('in postFavoriteSaga', action);
     //Need to buildout Axios request
-}
+}   
 
 const sagaMiddleware = createSagaMiddleware();
 
