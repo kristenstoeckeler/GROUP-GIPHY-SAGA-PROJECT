@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import GiphySearch from '../GiphySearch/GiphySearch';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
 import './App.css';
+import {connect} from 'react-redux'
 
 class App extends Component {
 
@@ -12,7 +13,6 @@ class App extends Component {
     console.log( 'Got click on', linkTo );
     this.props.history.push( linkTo );
   }
-
 
   render() {
     return (
@@ -31,4 +31,4 @@ class App extends Component {
 
 }
 
-export default withRouter(App);
+export default connect()(withRouter(App));
