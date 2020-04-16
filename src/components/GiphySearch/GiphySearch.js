@@ -15,10 +15,6 @@ class GiphySearch extends Component {
       search: event.target.value
     });
   };
-  componentDidMount() {
-    console.log(this.props.reduxState.searchReducer.data);
-  }
-
   handleSubmit = event => {
     console.log(this);
     event.preventDefault();
@@ -26,6 +22,9 @@ class GiphySearch extends Component {
     this.props.dispatch({ type: "GET_GIF", payload: this.state.search });
     this.state.hasSearched = true;
   };
+  addToFav = (url) => {
+      this.props.dispatch({type:"POST_FAV",payload:{imageurl:url}})
+  }
 
   render() {
     if (this.state.hasSearched) {
@@ -35,11 +34,11 @@ class GiphySearch extends Component {
           <input value={this.state.search} onChange={this.handleChange} />
           <button onClick={this.handleSubmit}>search</button>
           <ul>
-            {this.props.reduxState.searchReducer.data.map(giphy => {
+            {this.props.reduxState.searchReducer.data.map( giphy => {
               return (
                 <>
                   <li>
-                    <img src={giphy.images.fixed_height_downsampled.url}></img>
+                    <img src={giphy.images.fixed_height_downsampled.url}></img><button onClick={ (event) => this.addToFav(giphy.images.fixed_height_downsampled.url)}>Add To Favorites</button>
                   </li>
                 </>
               );
