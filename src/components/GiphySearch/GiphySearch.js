@@ -28,12 +28,14 @@ class GiphySearch extends Component {
 
   render() {
     if (this.state.hasSearched) {
+        console.log(this.props.reduxState.searchReducer.pagination.count)
       return (
         <div>
           <header>Search for a Giphy</header>
           <input value={this.state.search} onChange={this.handleChange} />
           <button onClick={this.handleSubmit}>search</button>
           <ul>
+              <h1>Showing {this.props.reduxState.searchReducer.pagination.count} of {this.props.reduxState.searchReducer.pagination.total_count}</h1>
             {this.props.reduxState.searchReducer.data.map( giphy => {
               return (
                 <>
