@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class GiphySearch extends Component {
     state = {
@@ -34,4 +35,4 @@ class GiphySearch extends Component {
     }
 }
 
-export default (GiphySearch);
+export default connect()(GiphySearch);
