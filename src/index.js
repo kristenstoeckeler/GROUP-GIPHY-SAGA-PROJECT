@@ -48,6 +48,7 @@ function* getGifSaga(action){
     }
 }
 
+//Need to build GET Favorites
 function* getFavoriteSaga(action) {
     console.log('in getGifSaga', action);
     //Need to buildout Axios request
