@@ -11,11 +11,13 @@ import App from './components/App/App';
 
 const searchReducer = () => {
     console.log('in searchReducer');
+    return 'blah'
     //Need to buildout reducer
 }
 
 const favoriteReducer = () => {
     console.log('in favoriteReducer');
+    return 'blah'
     //Need to buildout reducer
 }
 
