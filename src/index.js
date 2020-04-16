@@ -41,6 +41,7 @@ function* putFavoriteSaga(action){
     console.log('in putFavoriteSaga', action.payload);
     try{
         yield axios.put(`/api/favorite/${action.payload.id}`, action.payload);
+        yield put({type:'GET_FAV'});
     }
     catch(error){
         console.log('Error with Favorite PUT', error);
@@ -73,7 +74,8 @@ function* getFavoriteSaga(action) {
 function* postFavoriteSaga(action) {
     console.log('in postFavoriteSaga', action.payload);
     try {
-        yield axios.post('/api/favorite', action.payload)
+        yield axios.post('/api/favorite', action.payload);
+        yield put({ type: 'GET_FAV' });
     }
     catch(error){
         console.log('Error on POST', error);
