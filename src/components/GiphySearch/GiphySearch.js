@@ -17,6 +17,7 @@ class GiphySearch extends Component {
 
         event.preventDefault();
         console.log(this.state.search);
+        this.props.dispatch({ type: 'GET_GIF', payload: this.state.search})
 
 /*         this.props.dispatch({ type: '', payload: this.state.search })
  */    }
