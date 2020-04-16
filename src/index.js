@@ -40,7 +40,7 @@ function* rootSaga(){
 function* getGifSaga(action){
     console.log('in getGifSaga', action.payload);
     try{
-        const response = yield axios.get('/api/search');
+        const response = yield axios.get(`/api/search/${action.payload}`);
         console.log('heres the GET response');
         yield put({type: 'SEARCH_RESULTS', payload: response.data})
     }
