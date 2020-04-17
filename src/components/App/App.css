@@ -4,4 +4,16 @@
 
 .link {
     margin: 1rem;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    background-color: white;
+}
+
+.favorites {
+    padding-top: 100px;
+}
+
+.search{
+    padding-top: 100px;
 }

@@ -27,23 +27,32 @@ export class FavoriteGif extends Component {
     delete = (id) => {
         this.props.dispatch({ type: 'DELETE_FAV', payload: id })
     }
+    setCategory( category ) {
+        if( category === null ) {
+            return <p>Category:</p>
+        }
+        else {
+            return <p>Category: {category}</p>
+        }
+    }
 
     render() {
         return (
             <div>
-                {/* {this.props.favorite ? */}
+                <h1>Favorites</h1>
                 <img src={this.props.favorite.URL} alt="FavGif" />
                 <p>{this.props.favorite.category}</p>
                 <div className="category">
-                    <p>Category: {this.props.favorite.category}</p>
-                    <label htmlFor="category"><button onClick={this.handleClick}>Set Category</button></label>
-                    <select id="category" onChange={(event) => this.handleChange(event)}>
+                    { this.setCategory(this.props.favorite.name) }
+                    <label htmlFor="category"><button onClick={ this.handleClick}>Set Category</button></label>
+                    <select id="category" onChange={ (event) => this.handleChange( event )}>
                         <option></option>
-                        <option value="funny">Funny</option>
-                        <option value="cohort">Cohort</option>
-                        <option value="cartoon">Cartoon</option>
-                        <option value="nsfw">NSFW</option>
-                        <option value="meme">Meme</option>
+                        <option value="1">Funny</option>
+                        <option value="2">Cohort</option>
+                        <option value="3">Cartoon</option>
+                        <option value="4">NSFW</option>
+                        <option value="5">Meme</option>
+
                     </select>
                     <button onClick={(event) => this.delete(this.props.favorite.id)}>Remove Fav</button>
                 </div>
