@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import {connect} from 'react-redux'
 //links
 import GiphySearch from '../GiphySearch/GiphySearch';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
