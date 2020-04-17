@@ -23,24 +23,24 @@ class GiphySearch extends Component {
     this.state.hasSearched = true;
   };
   addToFav = (url) => {
-      this.props.dispatch({type:"POST_FAV",payload:{imageurl:url}})
+    this.props.dispatch({ type: "POST_FAV", payload: { imageurl: url } })
   }
 
   render() {
     if (this.state.hasSearched) {
-        console.log(this.props.reduxState.searchReducer.pagination.count)
+      console.log(this.props.reduxState.searchReducer.pagination.count)
       return (
         <div>
           <header>Search for a Giphy</header>
           <input value={this.state.search} onChange={this.handleChange} />
           <button onClick={this.handleSubmit}>search</button>
           <ul>
-              <h1>Showing {this.props.reduxState.searchReducer.pagination.count} of {this.props.reduxState.searchReducer.pagination.total_count}</h1>
-            {this.props.reduxState.searchReducer.data.map( giphy => {
+            <h1>Showing {this.props.reduxState.searchReducer.pagination.count} of {this.props.reduxState.searchReducer.pagination.total_count}</h1>
+            {this.props.reduxState.searchReducer.data.map(giphy => {
               return (
                 <>
                   <li>
-                    <img src={giphy.images.fixed_height_downsampled.url}></img><button onClick={ (event) => this.addToFav(giphy.images.fixed_height_downsampled.url)}>Add To Favorites</button>
+                    <img src={giphy.images.fixed_height_downsampled.url}></img><button onClick={(event) => this.addToFav(giphy.images.fixed_height_downsampled.url)}>Add To Favorites</button>
                   </li>
                 </>
               );
