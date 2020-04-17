@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import {connect} from 'react-redux'
 //links
 import GiphySearch from '../GiphySearch/GiphySearch';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
 import './App.css';
+
 import {connect} from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
+
 
 
 class App extends Component {

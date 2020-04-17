@@ -32,7 +32,7 @@ class GiphySearch extends Component {
   };
 
   addToFav = (url) => {
-      this.props.dispatch({type:"POST_FAV",payload:{imageurl:url}})
+      this.props.dispatch({type:"POST_FAV",payload:{imageurl:url, category: 0}})
   }
 
   render() {
@@ -75,3 +75,4 @@ class GiphySearch extends Component {
 }
 
 export default withStyles()(connect(mapStateToProps)(GiphySearch));
+
