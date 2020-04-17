@@ -25,7 +25,6 @@ export class FavoriteGif extends Component {
     delete = (id) => {
         this.props.dispatch({type: 'DELETE_FAV', payload: id})
     }
-
     setCategory( category ) {
         if( category === null ) {
             return <p>Category:</p>
@@ -34,7 +33,6 @@ export class FavoriteGif extends Component {
             return <p>Category: {category}</p>
         }
     }
-
 
     render() {
         return (
@@ -52,6 +50,7 @@ export class FavoriteGif extends Component {
                         <option value="3">Cartoon</option>
                         <option value="4">NSFW</option>
                         <option value="5">Meme</option>
+
                     </select>
                     <button onClick={(event) => this.delete(this.props.favorite.id)}>Remove Fav</button>    
                 </div>

@@ -56,7 +56,9 @@ router.put('/:favId', (req, res) => {
 // delete a favorite
 router.delete('/:id', (req, res) => {
   const id = req.params.id;
+
   console.log(`In delete `, id)
+
   const queryText = `DELETE FROM favorite WHERE id = ($1)`
   const queryValues = [
     id
