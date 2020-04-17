@@ -32,12 +32,12 @@ class GiphySearch extends Component {
   };
 
   addToFav = (url) => {
-      this.props.dispatch({type:"POST_FAV",payload:{imageurl:url, category: 0}})
+    this.props.dispatch({ type: "POST_FAV", payload: { imageurl: url } })
   }
 
   render() {
     if (this.state.hasSearched) {
-        console.log(this.props.reduxState.searchReducer.pagination.count)
+      console.log(this.props.reduxState.searchReducer.pagination.count)
       return (
         <>
         <div className="search">
@@ -45,8 +45,8 @@ class GiphySearch extends Component {
             <input value={this.state.search} onChange={this.handleChange} />
               <Button variant="contained" color="primary" onClick={this.handleSubmit}>Search</Button>
           <ul>
-              <h1>Showing {this.props.reduxState.searchReducer.pagination.count} of {this.props.reduxState.searchReducer.pagination.total_count}</h1>
-            {this.props.reduxState.searchReducer.data.map( giphy => {
+            <h1>Showing {this.props.reduxState.searchReducer.pagination.count} of {this.props.reduxState.searchReducer.pagination.total_count}</h1>
+            {this.props.reduxState.searchReducer.data.map(giphy => {
               return (
                 <>
                   <li>

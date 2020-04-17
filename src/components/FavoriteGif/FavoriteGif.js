@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 //Connect to the redux store
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import './FavoriteGif.css';
+
 
 export class FavoriteGif extends Component {
 
@@ -9,21 +11,21 @@ export class FavoriteGif extends Component {
     }
 
     handleClick = () => {
-        console.log( 'Category Selected', this.props.favorite.id, this.state );
-        this.props.dispatch({ type: 'PUT_FAV', payload: { id: this.props.favorite.id, category: this.state.category } } );
+        console.log('Category Selected', this.props.favorite.id, this.state);
+        this.props.dispatch({ type: 'PUT_FAV', payload: { id: this.props.favorite.id, category: this.state.category } });
         this.setState({
             category: '',
         })
     }
 
-    handleChange = ( event ) => {
-        console.log( 'Category changed to', event.target.value );
+    handleChange = (event) => {
+        console.log('Category changed to', event.target.value);
         this.setState({
             category: event.target.value,
         })
     }
     delete = (id) => {
-        this.props.dispatch({type: 'DELETE_FAV', payload: id})
+        this.props.dispatch({ type: 'DELETE_FAV', payload: id })
     }
     setCategory( category ) {
         if( category === null ) {
@@ -52,7 +54,7 @@ export class FavoriteGif extends Component {
                         <option value="5">Meme</option>
 
                     </select>
-                    <button onClick={(event) => this.delete(this.props.favorite.id)}>Remove Fav</button>    
+                    <button onClick={(event) => this.delete(this.props.favorite.id)}>Remove Fav</button>
                 </div>
             </div>
         )
