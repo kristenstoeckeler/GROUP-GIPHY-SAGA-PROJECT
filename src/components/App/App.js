@@ -5,7 +5,9 @@ import { withRouter } from 'react-router';
 import GiphySearch from '../GiphySearch/GiphySearch';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
 import './App.css';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import AppBar from '@material-ui/core/AppBar';
+
 
 class App extends Component {
 
@@ -16,16 +18,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <>
+      <div className="App"> 
         <Router>
+          <AppBar>
           <nav className='navBar'>
             <p className = "link"><Link to='/favorites'>See Favorites </Link></p>
             <p className = "link"><Link to='/'>Search for more Gifs </Link></p>
           </nav>
+          </AppBar>
           <Route exact path='/' component={ GiphySearch } />
           <Route exact path='/favorites' component={ FavoritesPage } />
         </Router>
       </div>
+      
+      </>
     );
   }
 

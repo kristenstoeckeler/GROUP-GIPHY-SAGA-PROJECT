@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 //Import to do routing
 import {withRouter} from 'react-router-dom';
 import FavoriteGif from '../FavoriteGif/FavoriteGif';
+import AppBar from '@material-ui/core/AppBar';
+
 
 export class FavoritesPage extends Component {
 
@@ -13,11 +15,13 @@ export class FavoritesPage extends Component {
 
     render() {
         return (
+            <>
             <section className="favorites">
                 {this.props.favorites.map( favorite =>
                     <FavoriteGif key={favorite.id} favorite={favorite} />
                     )}
             </section>
+            </>
         )
     }
 }
