@@ -5,7 +5,7 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  const queryText = 'SELECT * FROM favorite';
+  const queryText = 'SELECT "favorite"."id", "favorite"."URL", "category"."name" FROM "favorite" LEFT OUTER JOIN "category" ON "favorite"."category_id" = "category"."id"';
   pool.query(queryText)
     .then((result) => { 
       console.log( 'Got fav on server', result.rows );
@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
   const queryText = `INSERT INTO favorite ("URL")
                     VALUES ($1)`;
   const queryValues = [
-    fav.imageurl
+    fav.imageurl,
   ];
   pool.query(queryText, queryValues)
     .then(() => { res.sendStatus(201); })
@@ -36,14 +36,13 @@ router.post('/', (req, res) => {
 // update given favorite with a category id
 router.put('/:favId', (req, res) => {
   // req.body should contain a category_id to add to this favorite image
-  const data = req.body;
-  const id = req.params.favId;
+  const data = req.body;  const id = req.params.favId;
   console.log( `Setting category for id ${id} to ${req.body.category}`)
   const queryText = `UPDATE favorite
-                      SET category = ($1)
+                      SET category_id = ($1)
                       WHERE id = ($2)`;
   const queryValues = [
-    data.category,
+    req.body.category,
     id
   ]
   pool.query(queryText, queryValues)
@@ -55,8 +54,19 @@ router.put('/:favId', (req, res) => {
 });
 
 // delete a favorite
-router.delete('/', (req, res) => {
-  res.sendStatus(200);
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  console.log(`In delete `, id)
+  const queryText = `DELETE FROM favorite WHERE id = ($1)`
+  const queryValues = [
+    id
+  ]
+  pool.query(queryText, queryValues)
+    .then(()=>{res.sendStatus(201);})
+    .catch((err) => {
+      console.log('Error completing put category',err);
+      res.sendStatus(500)
+    })
 });
 
 module.exports = router;
